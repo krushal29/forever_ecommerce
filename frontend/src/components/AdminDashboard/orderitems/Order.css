@@ -1,0 +1,35 @@
+
+.detailorder{
+    /* background-color: aqua; */
+    width: 165%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    border: 1px solid #e5e7eb;
+    padding: 25px 25px;
+}
+.detailorder .adreesDetail .userName p{
+    font-weight: 800;
+}
+.detailorder .adreesDetail{
+    /* background-color: aliceblue; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.detailorder .pamentDetail{
+    /* background-color: antiquewhite; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.detailorder .pamentDetail .Methodpayment{
+    /* background-color: blue; */
+    line-height: 20px;
+}
+.detailorder .orederSatus select{
+    /* background-color: blueviolet; */
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: 700;
+}

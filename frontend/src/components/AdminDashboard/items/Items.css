@@ -1,0 +1,56 @@
+.items {
+  width: 100%;
+  height: 100vh;
+  /* background-color: aquamarine; */
+  display: flex;
+  justify-content: center;
+}
+.items1 {
+    width: 90%;
+    /* background-color: black; */
+}
+.items2 {
+  width: 85%;
+  /* background-color: red; */
+  border-right: 1px solid #e5e7eb;
+  height: 100vh;
+  margin-left: 60px;
+}
+.items2 .addItems{
+    padding-top: 30px;
+}
+
+.items2 .addItems button,
+.items2 .listItems button,
+.items2 .order button  {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 8px 5px;
+  text-align: start;
+  margin-bottom: 15px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border:  1px solid #e5e7eb;
+  border-right: none;
+  background-color: transparent;
+}
+
+
+.items2 .addItems button a,
+.items2 .listItems button a,
+.items2 .order button a {
+  display: flex;
+  align-items: center;
+  border: none;
+  text-decoration: none;
+  color: black;
+}
+
+
+
+.items2 .addItems button p,
+.listItems button p,
+.order button p{
+   padding: 0px 5px;
+}

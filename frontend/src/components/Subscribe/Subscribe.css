@@ -1,0 +1,44 @@
+.Subscribe {
+  width: 100%;
+  /* background-color: aqua; */
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+}
+
+.Subscribe1 {
+  width: 85%;
+  /* background-color: aquamarine; */
+  text-align: center;
+}
+
+.Subscribe1 .Subscribe_h3 h3 {
+  font-size: 20px;
+  padding-bottom: 10px;
+}
+
+.Subscribe1 .Subscribe_p p {
+  color: #9ca3af;
+  padding-bottom: 20px;
+}
+
+.Subscribe1 .Subscribe_input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Subscribe1 .Subscribe_input input {
+  padding: 15px 300px 15px 10px;
+  border: 1px solid #9ca3af;
+  border-right: none;
+}
+
+.Subscribe1 .Subscribe_input button {
+  padding: 18px 34px;
+  background-color: black;
+  color: white;
+  border: 1px solid #9ca3af;
+  border-left: none;
+  font-size: 10px;
+}

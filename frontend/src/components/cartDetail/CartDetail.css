@@ -1,0 +1,147 @@
+.cartDetail{
+    width: 100%;
+    /* background-color: aqua; */
+    display: flex;
+    justify-content: center;
+    margin-top: 65px;
+}
+
+
+.cartDetail1{
+    width: 85%;
+    /* background-color: aquamarine; */
+}
+
+
+.cartDetail1 .yourcart{
+    display: flex;
+    align-items: center;
+    padding-bottom: 20px;
+}
+
+.cartDetail1 .yourcart h2{
+    padding-right: 10px;
+}
+
+
+.cartDetail1 .yourcart h2 span{
+    color: #6b7280;
+}
+
+.cartDetail1 .cartitem{
+    /* background-color: blue; */
+    display: flex;
+    border-top: 1px solid #e5e7eb;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 19px 0;
+}
+
+
+.cartDetail1 .cartitem .img{
+    /* background-color: cadetblue; */
+    width: 6%;
+
+}
+.cartDetail1 .cartitem .img img{
+    width: 100%;
+    display: inline;
+}
+
+.cartDetail1 .cartitem .itemdetail {
+    /* background-color: brown; */
+    width: 100%;
+     margin-left: 30px;
+}
+.cartDetail1 .cartitem .itemdetail .priceDetail{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+
+
+.cartDetail1 .cartitem .itemdetail .priceDetail .size p{
+    border: 1px solid #e5e7eb;
+    background-color: #E5E7EB;
+    padding: 5px 10px;
+    
+}
+.cartDetail1 .cartitem .itemdetail .priceDetail .count input{
+    width: 40%;
+    border: 1px solid #e5e7eb;
+    padding: 5px 0;
+}
+
+.cartDetail1 .cartitem .itemdetail .priceDetail .priceSize{
+    display: flex;
+    /* background-color:red ; */
+    width: 8%;
+    justify-content: space-between;
+    align-items: center;
+
+
+}
+
+
+.delete{
+    cursor: pointer;
+}
+
+
+
+.total{
+    width: 100%;
+    /* background-color: aqua; */
+    display: flex;
+    justify-content: center;
+    margin-top: 90px;
+}
+.total1{
+    width: 85%;
+    /* background-color: aquamarine;   */
+    display: flex;
+    justify-content: end; 
+}
+.total1 .total3{
+    /* background-color: blue; */
+    width: 35%;
+}
+.total3 .totalfirst {
+    display: flex;
+    align-items: center;
+}
+.total3 .totalfirst h2{
+    padding-right: 10px;
+}
+.total3 .totalfirst h2 span{
+    color: #6b7280;
+}
+.total3 .SubTotal{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0 10px;
+    border-bottom: 1px solid #e5e7eb;
+}
+.total3 .Shipping{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0 10px;
+    border-bottom: 1px solid #e5e7eb;
+}
+.total3 .total2{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0 10px;
+}
+.total3 .checkoutbtn{
+    display: flex;
+    justify-content: end;
+    margin-top: 20px;
+}
+.total3 .checkoutbtn button{
+background-color: black;
+color: white;
+padding: 15px 35px;
+border: none;
+cursor: pointer;
+}

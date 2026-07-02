@@ -1,0 +1,61 @@
+.policy{
+    width: 100%;
+    /* background-color: aqua; */
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+}
+.policy1{
+    width: 85%;
+    /* background-color: aquamarine; */
+    display: flex;
+    justify-content: space-around;
+}
+
+.policy1 .ExchangePolicy{
+    text-align: center;
+}
+
+.policy1 .ExchangePolicy .policyImg img{
+    width: 20%;
+    padding-bottom: 12px;
+}
+
+.policy1 .ExchangePolicy .detail_p p{
+    padding-top: 5px;
+    color: #9ca3af;
+}
+
+
+
+
+
+.policy1 .ReturnPolicy{
+    text-align: center;
+}
+
+.policy1 .ReturnPolicy .policyImg img{
+    width: 20%;
+    padding-bottom: 12px;
+}
+
+.policy1 .ReturnPolicy .detail_p p{
+    padding-top: 5px;
+    color: #9ca3af;
+}
+
+
+
+.policy1 .customersupport{
+    text-align: center;
+}
+
+.policy1 .customersupport .policyImg img{
+    width: 20%;
+    padding-bottom: 12px;
+}
+
+.policy1 .customersupport .detail_p p{
+    padding-top: 5px;
+    color: #9ca3af;
+}

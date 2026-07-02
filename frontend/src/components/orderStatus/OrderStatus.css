@@ -1,0 +1,66 @@
+.orderCard{
+    width: 100%;
+    /* background-color: aqua; */
+    display: flex;
+    justify-content: center;
+}
+.orderCard1{
+    width: 85%;
+    /* background-color: aquamarine; */
+    padding-top: 70px;
+}
+.orderCard1 .Myorder{
+    display: flex;
+    align-items: center;
+    /* background-color: blue; */
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+}
+.orderCard1 .Myorder span{
+    color: #6b7280;
+}
+.orderCard1 .Myorder p{
+    margin-left: 8px;
+}
+.orderCard1 .trackCard1{
+    display: flex;
+    padding: 15px 0;
+    /* background-color: blue; */
+    border-bottom: 1px solid #e5e7eb;
+    justify-content: space-between;
+}
+.orderCard1 .trackCard1 .secondpart1{
+    margin-left: -500px;
+    /* background-color: blueviolet; */
+    width: 40%;
+    display: flex;
+    justify-content: space-between;
+}
+.orderCard1 .trackCard1 .secondpart1 .secondPart{
+    /* background-color: bisque; */
+    display: flex;
+    flex-direction: column;
+    justify-content:  space-between;
+}
+.orderCard1 .trackCard1 .secondpart1 .thidPartOrderStatus{
+    /* background-color: blue; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.orderCard1 .trackCard1 .secondpart1 .PriceQuntity{
+    display: flex;
+    /* background-color: aliceblue; */
+    justify-content: space-between;
+}
+.orderCard1 .trackCard1 .trackOrder{
+    /* background-color: blue; */
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    cursor: pointer;
+}
+.orderCard1 .trackCard1 .trackOrder p{
+    border: 1px solid #e5e7eb;
+    padding: 10px 20px;
+}

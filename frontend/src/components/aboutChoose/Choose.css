@@ -1,0 +1,42 @@
+.choose1{
+    display: flex;
+    justify-content: center;
+}
+
+.choose{
+    display: flex;
+    align-items: center;
+    margin-top: 50px;
+    width: 85%;
+    /* background-color: aqua; */
+    
+}
+
+.choose h2 span{
+    color: #6b7280;
+}
+
+.chooseCard{
+    width: 100%;
+    /* background-color: aquamarine; */
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.chooseCard1{
+    width: 85%;
+    /* background-color: rgb(205, 113, 113); */
+    display: flex;
+}
+.chooseCard1 .Quality,.Convenience,.Exceptional{
+    border: 1px solid #e5e7eb;
+    padding: 100px 55px;
+}
+.chooseCard1 .CardH4 h4{
+    padding-bottom: 20px;
+}
+
+.chooseCard1 .CardP p{
+    color: #4c4e4d;
+}

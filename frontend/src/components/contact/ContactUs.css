@@ -1,0 +1,94 @@
+.contact-us{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 45px;
+}
+
+.contact-us h2{
+    margin-right: 8px;
+}
+
+.contact-us h2 span{
+    color: #6b7280;
+    margin-right: 7px;
+}
+.contact{
+    width: 100%;
+    /* background-color: aqua; */
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 90px;
+}
+.contact1{
+    width: 60%;
+    /* background-color: bisque; */
+    display: flex;
+    
+}
+
+.contact1 .contactImg img{
+    width: 92%;
+}
+
+
+.contact1 .store{
+    width: 68%;
+    /* background-color: blue; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+
+.contact1 .store .storeh2 h2{
+    padding-bottom: 20px;
+}
+
+
+.contact1 .store .storeul ul li{
+    padding-bottom: 2px;
+    color: #6b7280;
+}
+
+.contact1 .store .storeul ul li {
+    list-style: none;
+}
+
+.contact1 .store .storeul ul .TelNum{
+    padding-top: 15px;
+}
+
+.contact1 .store .careerh2{
+    padding: 15px 0;
+}
+.contact1 .store .careerp p{
+    color: #6b7280;
+}
+.contact1 .store .JobsBtn {
+    margin: 20px 0;
+    /* background-color: #6b7280; */
+    /* width: 37%; */
+}
+.contact1 .store .JobsBtn button {
+    background-color: transparent;
+    padding: 15px 28px;
+}
+
+.contact1 .store .JobsBtn button a{
+    color: black;
+    text-decoration: none;
+}
+.contact1 .store .JobsBtn:hover a {
+    color: white;
+    background-color: black;
+}
+
+.contact1 .store .JobsBtn:hover button {
+    color: white;
+    background-color: black;
+}
+
+

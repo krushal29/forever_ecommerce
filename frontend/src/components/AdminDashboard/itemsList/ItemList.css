@@ -1,0 +1,51 @@
+
+.List1{
+    width: 100%;
+    /* background-color: aqua; */
+}
+.List1 .ListP p{
+    padding-bottom: 10px;
+}
+.List1 .tableList .navbartable{
+    background-color: #e5e7eb;
+    border: 1px solid  #e5e7eb;
+    padding: 7px 5px;
+    display: grid;
+    /* display: flex; */
+    grid-template-columns: 2fr 4fr 1fr 1fr 1fr;
+}
+
+
+
+.List1 .tableList .navbartable p{
+    font-weight: 800;
+}
+.List1 .tableList .datatable .imgData{
+    width: 20%;
+    /* background-color: black; */
+}
+
+.List1 .tableList .datatable .display1{
+    display: flex;
+    align-items: center;
+    border: 1px solid  #e5e7eb;
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 2fr 4fr 1fr 1fr 1fr;
+    padding: 3px 5px;
+
+}
+
+.List1 .tableList .datatable .imgData img{
+    width: 100%;
+}
+
+.textalinecenter{
+    padding-left: 15px;
+}
+.tableList .datatable button{
+    width:0%;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}

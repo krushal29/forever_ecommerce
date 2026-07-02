@@ -1,0 +1,91 @@
+.product {
+  width: 100%;
+  /* background-color: aqua; */
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+.product1 {
+  width: 85%;
+  /* background-color: aquamarine; */
+  display: flex;
+  /* justify-content: space-between; */
+}
+.product1 .img1{
+    width: 10%;
+    /* background-color: black; */
+}
+
+.product1 .img1 img{
+  width: 100%;
+}
+
+.product1 .img2{
+    margin-left: 15px;
+    width: 37%;
+    /* background-color: black; */
+}
+.product1 .img2 img{
+    width: 100%;
+}
+.product1 .imgDetail{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 50px;
+    /* background-color: blue; */
+    width: 36%;
+}
+.product1 .imgDetail .imgDetail1{
+    border-bottom: 1px solid black;
+}
+.product1 .imgDetail .star{
+    display: flex;
+    align-items: center;
+    width: 29%;
+    padding-top: 12px;
+}
+.product1 .imgDetail .star .star1{
+    /* background-color: aqua; */
+margin-left: 5px;
+}
+.product1 .imgDetail .star .star1 img{
+    width: 100%;
+}
+
+.product1 .imgDetail .star .rating p{
+    margin-left: 15px;
+}
+.product1 .imgDetail .price1 h2{
+    padding-top: 15px;
+}
+.product1 .imgDetail .ProductDescription p{
+    padding-top: 15px;
+}
+
+.product1 .imgDetail .productSize p{
+    padding-top: 20px;
+}
+
+.product1 .imgDetail .productSize .allsizes{
+    padding-top: 10px;
+}
+.product1 .imgDetail .productSize .allsizes button{
+    border: none;
+    cursor: pointer;
+    padding: 10px 15px;
+    margin-right:7px;
+}
+.product1 .imgDetail .AddToCartbtn button{
+    padding: 10px 25px;
+    margin-top: 30px;
+    background-color: black;
+    color: white;
+    margin-bottom: 30px;
+    cursor: pointer;
+
+}
+.product1 .detailsProduct{
+    padding-top:20px;
+}
+.product1 .detailsProduct p{padding-bottom: 5px;}

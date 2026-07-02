@@ -1,0 +1,67 @@
+.hero{
+    width: 100%;
+    /* background-color: aqua; */
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+.hero1{
+    width: 85%;
+    /* background-color: aquamarine; */
+    border: 1px solid #9ca3af;
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+}
+.line{
+    border: 1px solid black;
+    width: 55px;
+    height: 0;
+}
+
+.hero1 .heroLeft{
+    width: 52%;
+    /* background-color: azure; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.hero1 .heroLeft .firstLine{
+    display: inline-flex;
+    align-items: center;
+    padding-bottom: 10px;
+    margin-right: 60px;
+}
+
+
+.hero1 .heroLeft .firstLine .padd{
+    padding-left: 10px;
+    font-weight: 600;
+}
+
+.hero1 .heroLeft h1{
+    font-size: 45px;
+    font-family: Prata, serif;
+    font-style: normal;
+}
+.hero1 .heroLeft .lastLine{
+    display: inline-flex;
+    align-items: center;
+    padding-top: 15px;
+    margin-right: 130px;
+}
+
+.hero1 .heroLeft .lastLine .padd1{
+    padding-right: 10px;
+    font-weight: 600;
+}
+.hero1 .rightLogo{
+    width: 47%;
+    /* background-color: black; */
+}
+.hero1 .rightLogo img{
+    width: 100%
+}

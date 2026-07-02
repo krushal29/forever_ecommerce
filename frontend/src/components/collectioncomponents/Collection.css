@@ -1,0 +1,89 @@
+.latestCard3{
+    width:100% ;
+    /* background-color: burlywood; */
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.collection{
+    width: 100%;
+    /* background-color: aqua; */
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+.collection1{
+    width: 85%;
+    /* background-color: aquamarine; */
+    display: flex;
+    justify-content: space-between;
+}
+
+.collection1 .filter .filterh3 h3{
+    padding-bottom: 20px;
+}
+
+.collection1 .filter .categories{
+    border: 1px solid #d1d5db;
+    padding: 10px 120px 8px 10px;
+}
+
+.collection1 .filter .categories h4{
+    padding-bottom: 10px;
+}
+
+.collection1 .filter .categories .Men,.Women,.kids{
+    align-items: center;
+    padding-bottom: 5px;
+}
+.collection1 .filter .categories .Men label,.Women label,.kids label{
+    margin-left: 5px;
+    color: #616263;
+}
+
+.collection1 .filter .type{
+    margin-top:20px;
+    border: 1px solid #d1d5db;
+    padding: 10px 80px 8px 10px;
+}
+.collection1 .filter .type h4{
+    padding-bottom: 10px;
+}
+
+.collection1 .filter .type .topwear,.bottomwear,.winterwear{
+    align-items: center;
+    padding-bottom: 5px;
+}
+
+.collection1 .filter .type .topwear label,.bottomwear label,.winterwear label{
+    margin-left: 5px;
+    color: #616263;
+}
+
+.collection1 .AllCollections {
+    /* background-color: blue; */
+    margin-left: 40px;
+}
+.collection1 .AllCollections .firstLineCollection{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 15px;
+    align-items: center;
+}
+
+.collection1 .AllCollections .firstLineCollection .AllCollection{
+    display: flex;
+    align-items: center;
+}
+
+.collection1 .AllCollections .firstLineCollection .AllCollection h2{
+    padding-right:10px;
+}
+
+.collection1 .AllCollections .firstLineCollection .AllCollection h2 span{
+    padding-right: 10px;
+    color: #6b7280;
+}
+.collection1 .AllCollections .firstLineCollection .SortBy select{
+    padding: 10px 10px;
+    background-color: transparent;
+}

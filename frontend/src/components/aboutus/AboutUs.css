@@ -1,0 +1,56 @@
+.About {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+
+}
+.About h2{
+    margin-right: 8px;
+}
+.About h2 span{
+    color: #6b7280;
+    margin-right: 7px;
+}
+
+.aboutUs{
+    width: 100%;
+    /* background-color: aqua; */
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+.aboutUs1{
+    width: 85%;
+    /* background-color: aquamarine; */
+    display: flex;
+}
+.aboutUs1 .aboutImg{
+    /* background-color: black; */
+width: 40%;
+}
+.aboutUs1 .aboutImg img{
+    width:90%;
+}
+
+.aboutUs1 .aboutDetail{
+    width: 45%;
+    /* background-color: blue; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.aboutUs1 .aboutDetail .detail1 p{
+    color: #4B5563;
+padding-bottom: 25px;
+}
+.aboutUs1 .aboutDetail .detail2 p{
+    color: #4B5563;
+    padding-bottom: 25px;
+    }
+
+    .aboutUs1 .aboutDetail .missionP p{
+        color: #4B5563;
+        padding: 25px 0;
+    }

@@ -1,0 +1,66 @@
+.latest{
+    width: 100%;
+    /* background-color: aqua; */
+    margin-top: 70px;
+    display: flex;
+    justify-content: center;
+}
+
+.latest1{
+    width: 85%;
+    /* background-color: aquamarine; */
+    display: flex;
+    justify-content: center;
+}
+
+
+.latest1 .latest2 .latestdetail{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.latest1 .latest2 .latestdetail h1{
+    padding-right: 10px;
+    margin-left: 120px;
+} 
+.latest1 .latest2 .latestdetail h1 span{
+    color: #6b7280;
+    margin-right: 8px;
+}
+
+
+.latestCard1{
+    width: 100%;
+    /* background-color: aqua; */
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+.latestCard2{
+    width: 85%;
+    /* background-color: aquamarine; */
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 15px;
+}
+
+.latestCard2 .card{
+    /* border: 1px solid black; */
+    width: 100%;
+    height: 350px;
+}
+
+.latestCard2 .card .img{
+    height: 300px;
+}
+.latestCard2 .card .img img{
+    width: 100%;
+    height: 100%;
+}
+.latestCard2 .card .imformation .PName{
+    margin-top: 10px;
+}
+.latestCard2 .card .imformation .PPrice{
+    margin-top: 2px;
+}

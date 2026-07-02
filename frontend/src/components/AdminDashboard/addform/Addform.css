@@ -1,0 +1,138 @@
+.Addform {
+  width: 100%;
+  /* background-color: aqua; */
+}
+
+.Addform1 {
+  width: 38%;
+  /* background-color: aquamarine; */
+}
+.Addform1 .uploadImg h4 {
+  margin-bottom: 7px;
+  color: #728c94;
+}
+.Addform1 .upload {
+  display: flex;
+  width: 90%;
+  /* background-color: red; */
+  padding-bottom: 10px;
+}
+
+
+.Addform1 .productName h4{
+    padding-bottom: 5px;
+    color: #728c94;
+}
+
+.Addform1 .producttype input{
+    width: 100%;
+    padding: 8px 5px;
+}
+
+.Addform1 .productdescription h4{
+    padding: 8px 0;
+    color: #728c94;
+}
+
+.Addform1 .inputdescription textarea{
+    width: 100%;
+    padding: 8px 5px;
+}
+
+.Addform .Allcategory{
+    display: flex;
+    padding-top: 10px;
+}
+
+.Addform1 .Allcategory .Productcategory{
+    /* width: 70%; */
+    /* background-color: aliceblue; */
+    margin-right: 20px;
+}
+
+
+.Addform1 .Allcategory .Productcategory .category h4{
+    color: #728c94;
+    padding-bottom: 8px;
+}
+
+.Addform1 .Allcategory .Productcategory .inputcategory select{
+    width: 100%;
+    padding: 5px 0;
+}
+
+
+
+
+
+.Addform1 .Allcategory .SubCategory{
+    /* width: 70%; */
+    /* background-color: aliceblue; */
+    margin-right: 20px;
+}
+
+
+.Addform1 .Allcategory .SubCategory .category h4{
+    color: #728c94;
+    padding-bottom: 8px;
+}
+
+.Addform1 .Allcategory .SubCategory .inputcategory select{
+    width: 100%;
+    padding: 5px 0;
+}
+
+
+.Addform1 .Allcategory .ProductPrice{
+    width: 30%;
+    /* background-color: aliceblue; */
+    /* margin-right: 5px; */
+}
+
+
+.Addform1 .Allcategory .ProductPrice .category h4{
+    color: #728c94;
+    padding-bottom: 8px;
+}
+
+.Addform1 .Allcategory .ProductPrice .inputcategory input{
+    width: 100%;
+    padding: 5px 0;
+}
+
+.Addform1 .ProductSizes{
+    padding-top: 10px;
+}
+.Addform1 .ProductSizes h4{
+    color: #728c94;
+}
+.Addform1 .allsizes{
+    display: flex;
+    padding-top: 5px;
+}
+
+.Addform1 .allsizes .size button{
+    padding: 5px 10px;
+    margin-right: 15px;
+    cursor: pointer;
+    border: none;
+}
+
+.Addform1 .bestSellers{
+    padding-top: 12px;
+    align-items: center;
+    display: flex;
+}
+
+.Addform1 .bestSellers input{
+    margin-right: 5px;
+}
+
+.Addform1 .Addbtn button{
+    padding: 10px 40px;
+    background-color: black;
+    color: white;
+    margin-top: 30px;
+    cursor: pointer;
+}
+

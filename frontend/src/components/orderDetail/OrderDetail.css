@@ -1,0 +1,202 @@
+.order1{
+    /* background-color: aqua; */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.order2{
+    /* background-color: aquamarine; */
+    width: 85%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.order2 .orderhanding{
+    display: flex;
+    align-items: center;
+}
+.order2 .userDetail{
+    padding: 70px 0;
+    width: 37%;
+    /* background-color: #374151; */
+}
+.order2 .orderhanding h2{
+    color: #374151;
+}
+.order2 .orderhanding h2 span{
+    color: #797f88;
+}
+.order2 .orderhanding p{
+    margin-left: 5px;
+}
+
+.order2 .userDetail .user .name{
+    padding-top: 30px;
+    display: flex;
+}
+.order2 .userDetail .user .lastName{
+    margin-left: 15px;
+}
+.order2 .userDetail .user .name input{
+    width: 48%;
+    padding: 10px 0;
+    border-radius: 4px;
+    border: 1px solid #d1d5db;
+}
+.order2 .userDetail .user .email{
+    padding-top: 13px;
+}
+.order2 .userDetail .user .email input{
+    width: 100%;
+    padding: 10px 0;
+    border-radius: 4px;
+    border: 1px solid #d1d5db;
+}
+.order2 .userDetail .user .street{
+    padding-top: 13px;
+}
+.order2 .userDetail .user .street input{
+    width: 100%;
+    padding: 10px 0;
+    border-radius: 4px;
+    border: 1px solid #d1d5db;
+}
+.order2 .userDetail .user .cityState{
+    padding-top: 13px;
+}
+.order2 .userDetail .user .cityState input{
+    width: 48%;
+    padding: 10px 0;
+    border-radius: 4px;
+    border: 1px solid #d1d5db;
+}
+.order2 .userDetail .user .codeCountry{
+    padding-top: 13px;
+}
+.order2 .userDetail .user .codeCountry input{
+    width: 48%;
+    padding: 10px 0;
+    border-radius: 4px;
+    border: 1px solid #d1d5db;
+}
+.order2 .userDetail .user .phone{
+    padding-top: 13px;
+}
+.order2 .userDetail .user .phone input{
+    width: 100%;
+    padding: 10px 0;
+    border-radius: 4px;
+    border: 1px solid #d1d5db;
+}
+
+
+/* payment Method*/
+.order2 .paymentMethod {
+    /* background-color: #5c92e3; */
+    width: 44%;
+    display:flex ;
+    flex-direction: column;
+    justify-content: center;
+}
+.order2 .paymentMethod .cartheading{
+    display: flex;
+    align-items: center;
+}
+.order2 .paymentMethod .cartheading h2{
+    color: #374151;
+}
+.order2 .paymentMethod .cartheading h2 span{
+    color: #797f88;
+}
+.order2 .paymentMethod .cartheading p{
+    margin-left:7px;
+}
+.order2 .paymentMethod .bill{
+    margin-top: 20px;
+    padding-bottom: 7px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #e5e7eb;
+}
+.order2 .paymentMethod .ShippingFee{
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #e5e7eb;
+}
+.order2 .paymentMethod .totalcharge{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+.order2 .paymentMethod .paymentMethodHeading{
+    display: flex;
+    align-items: center;
+    padding-top: 32px;
+}
+.order2 .paymentMethod .paymentMethodHeading h3{
+    color: #374151;
+}
+.order2 .paymentMethod .paymentMethodHeading h3 span{
+    color: #797f88;
+}
+.order2 .paymentMethod .paymentMethodHeading p{
+    margin-left: 7px;
+}
+.order2 .paymentMethod .allpayment{
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 15px;
+}
+.order2 .paymentMethod .allpayment .stripe{
+    border: 1px solid #e5e7eb;
+    padding: 3px 0px;
+    display: flex;
+    cursor: pointer;
+}
+.order2 .paymentMethod .allpayment .stripe input{
+    margin-left: 10px;
+}
+.order2 .paymentMethod .allpayment .stripe img{
+    width: 50%;
+    margin-left: 25px;
+}
+.order2 .paymentMethod .allpayment .razorpay{
+    border: 1px solid #e5e7eb;
+    padding: 3px 0px;
+    display: flex;
+    cursor: pointer;
+}
+.order2 .paymentMethod .allpayment .razorpay input{
+    margin-left: 10px;
+}
+.order2 .paymentMethod .allpayment .razorpay img{
+    width: 60%;
+    margin-left: 25px;
+}
+.order2 .paymentMethod .allpayment .COD{
+    border: 1px solid #e5e7eb;
+    padding: 3px 0px;
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+}
+.order2 .paymentMethod .allpayment .COD input{
+    margin-left: 10px;
+}
+.order2 .paymentMethod .allpayment .COD span{
+    padding:0 10px;
+}
+.order2 .paymentMethod .placebtn{
+    padding-top: 25px;
+    text-align: end;
+}
+.order2 .paymentMethod .placebtn button{
+    background-color: black;
+    color: white;
+    font-weight: 800;
+    cursor: pointer;
+    padding: 10px 60px;
+}

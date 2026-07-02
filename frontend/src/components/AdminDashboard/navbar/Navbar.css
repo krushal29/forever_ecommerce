@@ -1,0 +1,33 @@
+.adminNavbar{
+    width: 100%;
+    /* background-color: aqua; */
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 6px 0;
+}
+.adminNavbar1{
+    width: 90%;
+    /* background-color: aquamarine; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.adminNavbar1 .logo{
+    /* background-color: black; */
+    width: 10%;
+}
+.adminNavbar1 .logo img{
+    width: 100%;
+}
+
+.adminNavbar1 .LogoutBtn button {
+    background-color: #4b5563;
+    padding: 10px 30px;
+    border-radius: 30px;
+    border: none;
+}
+.adminNavbar1 .LogoutBtn button a{
+    color: white;
+    text-decoration: none;
+}

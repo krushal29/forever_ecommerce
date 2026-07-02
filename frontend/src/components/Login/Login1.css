@@ -1,0 +1,71 @@
+.login{
+    width: 100%;
+    height: 63vh;
+    /* background-color: aqua; */
+    display: flex;
+    justify-content: center;
+    /* margin-top: 0px; */
+}
+.login1{
+    width: 27%;
+    /* background-color: aquamarine; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+}
+
+.login1 .loginLine{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20px;
+}
+
+.login1 .loginLine h2{
+    margin-right: 5px;
+}
+
+
+.login1 .inputdetail .Email input{
+    padding: 8px 0;
+    width: 100%;
+}
+.Error{
+    margin-top: 5px;
+    color: red;
+}
+
+.login1 .inputdetail .password{
+    margin-top: 15px;
+}
+
+.login1 .inputdetail .password input{
+    width: 100%;
+    padding: 8px 0;
+}
+
+.login1 .inputdetail .Createaccount {
+    display: flex;
+    /* background-color: blue; */
+    margin-top: 10px;
+    justify-content: space-between;
+}
+
+.login1 .inputdetail .SignInBtn{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.login1 .inputdetail .SignInBtn button{
+    padding: 10px 30px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
+.Create p a{
+    color: black;
+    text-decoration: none;
+}

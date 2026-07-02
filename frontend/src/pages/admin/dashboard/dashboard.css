@@ -1,0 +1,11 @@
+.display1{
+    display: flex;
+}
+
+.display1 .firstside{
+    /* background-color: aqua; */
+    width: 20%;
+}
+.display1 .secondside{
+    padding: 30px 80px;
+}

@@ -1,0 +1,11 @@
+
+.margin1{
+    margin-top: 30px;
+}
+.login1 .inputdetail .name{
+    margin-bottom: 15px;
+}
+.login1 .inputdetail .name input{
+    width: 100%;
+    padding: 8px 0;
+}
