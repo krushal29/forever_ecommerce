@@ -3,12 +3,15 @@ import mongoose from "mongoose";
 const userSchema=new mongoose.Schema({
     name:{
         type:String,
-        required:true
+        required:true,
+        trim:true
     },
     email:{
         type:String,
         required:true,
-        unique:true
+        unique:true,
+        lowercase:true,
+        trim:true
     },
     password:{
         type:String,
@@ -21,12 +24,8 @@ const userSchema=new mongoose.Schema({
     IsAdmin:{
         type:String,
         default:"user"
-    },
-    IsLogin:{
-        type:Boolean,
-        default:false
     }
-},{minimize:false,collection:"userDetail"})
+},{minimize:false,collection:"userDetail",timestamps:true})
 
 const userModel=mongoose.models.userModel||mongoose.model("userDetail",userSchema);
 

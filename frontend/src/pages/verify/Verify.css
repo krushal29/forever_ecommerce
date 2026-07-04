@@ -1,0 +1,27 @@
+.verify-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  background-color: var(--color-bg-main);
+}
+
+.verify-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+}
+
+.verify-box h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-top: 10px;
+}
+
+.verify-box p {
+  font-size: 14px;
+  color: var(--color-secondary);
+}

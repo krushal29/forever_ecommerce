@@ -1,34 +1,42 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import "../adminLogin/Adminlogin.css";
-import { backendurl } from "../../../App";
+import { AuthContext } from "../../../context/AuthContext";
 import axios from "axios";
-
 import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 
 const Adminlogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isLogin, setIsLogin] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const { login, backendUrl } = useContext(AuthContext);
   const navigate = useNavigate();
-  console.log(isLogin);
 
   const onSubmitHandle = async (e) => {
-    try {
-      e.preventDefault();
+    e.preventDefault();
+    if (!email || !password) {
+      return toast.error("All fields are required");
+    }
 
-      const Response = await axios.post(backendurl + "/api/user/admin", {
+    try {
+      setLoading(true);
+      const response = await axios.post(backendUrl + "/api/user/admin", {
         email,
         password,
-        isLogin,
       });
-      console.log(Response);
-      if (Response.data.isLogin) {
-        navigate("/admin-dashboard");
+
+      if (response.data.isLogin && response.data.token) {
+        login(response.data.token, response.data.data);
+        toast.success("Welcome to Admin Panel!");
+        setTimeout(() => navigate("/admin-dashboard"), 1200);
       } else {
-        alert("Invalid Email or Password");
+        toast.error("Invalid Email or Password");
       }
     } catch (err) {
-      console.log(err.message);
+      console.error(err);
+      toast.error(err.response?.data?.message || "Invalid Email or Password");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -39,37 +47,44 @@ const Adminlogin = () => {
           <div className="loginh2">
             <h2>Admin Panel</h2>
           </div>
-          <form action="" onSubmit={onSubmitHandle}>
+          <form onSubmit={onSubmitHandle}>
             <div className="data">
               <div className="adminEmail">
                 <label htmlFor="email">Email Address</label>
                 <input
+                  id="email"
                   type="email"
                   placeholder="your@gmail.com"
                   value={email}
                   onChange={(e) => {
                     setEmail(e.target.value);
                   }}
+                  required
                 />
               </div>
               <div className="adminpassword">
                 <label htmlFor="password">Password</label>
                 <input
+                  id="password"
                   type="password"
                   placeholder="Enter Your password"
                   value={password}
                   onChange={(e) => {
                     setPassword(e.target.value);
                   }}
+                  required
                 />
               </div>
               <div className="adminBtn">
-                <button onClick={() => setIsLogin(!isLogin)}>Login</button>
+                <button type="submit" disabled={loading}>
+                  {loading ? "Verifying..." : "Login"}
+                </button>
               </div>
             </div>
           </form>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

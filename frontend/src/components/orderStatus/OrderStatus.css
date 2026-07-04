@@ -1,66 +1,263 @@
-.orderCard{
+/* ==========================================================================
+   ORDERS STATUS SCREEN STYLING
+   ========================================================================== */
+
+.orderCard {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: var(--color-bg-main);
+  padding: 50px 0;
+}
+
+.orderCard1 {
+  width: 85%;
+  max-width: 1200px;
+}
+
+.Myorder {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.Myorder h2 {
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--color-primary);
+}
+
+.Myorder h2 span {
+  color: #6b7280;
+  font-weight: 300;
+}
+
+/* Order Groups */
+.orders-list-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.order-group-box {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background-color: var(--color-bg-main);
+  box-shadow: var(--shadow-sm);
+}
+
+.order-group-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: var(--color-bg-alt);
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--color-border);
+  gap: 16px;
+}
+
+.order-meta-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.meta-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-secondary);
+  letter-spacing: 0.05em;
+}
+
+.meta-val {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-primary);
+}
+
+.order-items-list {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Individual Ordered Item Card inside Order Box */
+.trackCard1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px;
+  border-bottom: 1px solid var(--color-border);
+  gap: 20px;
+}
+
+.trackCard1:last-child {
+  border-bottom: none;
+}
+
+.imgTrack1 {
+  width: 70px;
+  height: 90px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-bg-alt);
+}
+
+.imgTrack1 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.secondpart1 {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+
+.secondPart {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.item-name-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-primary);
+}
+
+.PriceQuntity {
+  display: flex;
+  gap: 16px;
+  font-size: 14px;
+  color: var(--color-secondary);
+}
+
+.price-tag {
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.payment-type {
+  font-size: 13px;
+  color: var(--color-secondary);
+}
+
+.payment-status-badge {
+  font-weight: 600;
+  margin-left: 4px;
+}
+
+/* Status Indicator Dot system */
+.thidPartOrderStatus {
+  display: flex;
+  align-items: center;
+}
+
+.status-indicator-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-indicator-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #d1d5db;
+}
+
+.status-indicator-dot.order-placed {
+  background-color: #3b82f6; /* Blue */
+}
+
+.status-indicator-dot.packing {
+  background-color: #f59e0b; /* Amber */
+}
+
+.status-indicator-dot.shipped {
+  background-color: #8b5cf6; /* Purple */
+}
+
+.status-indicator-dot.out-of-delivery {
+  background-color: #06b6d4; /* Cyan */
+}
+
+.status-indicator-dot.delivered {
+  background-color: var(--color-success); /* Green */
+}
+
+.status-text-val {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-primary);
+}
+
+.trackOrder {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-sm-track {
+  font-size: 11px;
+  padding: 8px 16px;
+}
+
+/* Loading & Empty States */
+.orders-loading-state,
+.orders-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  width: 100%;
+  gap: 16px;
+  text-align: center;
+  padding: 40px;
+}
+
+.orders-empty-state h3 {
+  font-size: 20px;
+}
+
+.orders-empty-state p {
+  max-width: 500px;
+  color: var(--color-secondary);
+  margin-bottom: 8px;
+}
+
+/* Responsive configurations */
+@media (max-width: 768px) {
+  .trackCard1 {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px;
+  }
+  
+  .secondpart1 {
+    flex-direction: column;
+    align-items: flex-start;
     width: 100%;
-    /* background-color: aqua; */
-    display: flex;
-    justify-content: center;
-}
-.orderCard1{
-    width: 85%;
-    /* background-color: aquamarine; */
-    padding-top: 70px;
-}
-.orderCard1 .Myorder{
-    display: flex;
-    align-items: center;
-    /* background-color: blue; */
-    padding-bottom: 10px;
-    border-bottom: 1px solid #e5e7eb;
-}
-.orderCard1 .Myorder span{
-    color: #6b7280;
-}
-.orderCard1 .Myorder p{
-    margin-left: 8px;
-}
-.orderCard1 .trackCard1{
-    display: flex;
-    padding: 15px 0;
-    /* background-color: blue; */
-    border-bottom: 1px solid #e5e7eb;
-    justify-content: space-between;
-}
-.orderCard1 .trackCard1 .secondpart1{
-    margin-left: -500px;
-    /* background-color: blueviolet; */
-    width: 40%;
-    display: flex;
-    justify-content: space-between;
-}
-.orderCard1 .trackCard1 .secondpart1 .secondPart{
-    /* background-color: bisque; */
-    display: flex;
-    flex-direction: column;
-    justify-content:  space-between;
-}
-.orderCard1 .trackCard1 .secondpart1 .thidPartOrderStatus{
-    /* background-color: blue; */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-.orderCard1 .trackCard1 .secondpart1 .PriceQuntity{
-    display: flex;
-    /* background-color: aliceblue; */
-    justify-content: space-between;
-}
-.orderCard1 .trackCard1 .trackOrder{
-    /* background-color: blue; */
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    cursor: pointer;
-}
-.orderCard1 .trackCard1 .trackOrder p{
-    border: 1px solid #e5e7eb;
-    padding: 10px 20px;
+    gap: 16px;
+  }
+  
+  .trackOrder {
+    width: 100%;
+  }
+  
+  .btn-sm-track {
+    width: 100%;
+  }
+  
+  .order-group-header {
+    padding: 12px 16px;
+  }
 }

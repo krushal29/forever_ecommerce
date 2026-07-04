@@ -1,56 +1,43 @@
-//CSS
+import { Link } from "react-router-dom";
 import "../footer/Footer.css";
-
-//ALL IMGES
 import logo from "../../assets/logo.png";
 
 const Footer = () => {
   return (
-    <footer>
-      <div className="footer">
-        <div className="footer1">
-          <div className="firstSide">
-            <div className="FooterImg">
-              <img src={logo} alt="" />
-            </div>
-            <div className="FooterP">
-              <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book.
-              </p>
-            </div>
-          </div>
-          <div className="centerSide">
-            <div className="centerh3">
-              <h3>COMPANY</h3>
-            </div>
-            <div className="centerul">
-              <ul>
-                <li>Home</li>
-                <li>About us</li>
-                <li>Delivery</li>
-                <li>Privacy policy</li>
-              </ul>
-            </div>
-          </div>
-          <div className="lastSide">
-            <div className="lasth3">
-              <h3>GET IN TOUCH</h3>
-            </div>
-            <div className="lastUL">
-              <ul>
-                <li>+91 9409859500</li>
-                <li>krushalbhadiyadra2908@gmail.com</li>
-                <li>Instagram</li>
-              </ul>
-            </div>
-          </div>
+    <footer className="footer-wrapper">
+      <div className="footer-inner">
+        <div className="footer-brand">
+          <Link to="/">
+            <img src={logo} alt="Forever Logo" className="footer-logo" />
+          </Link>
+          <p className="footer-tagline">
+            Forever brings you timeless fashion crafted with care. Quality clothing for every season, every reason.
+          </p>
+        </div>
+
+        <div className="footer-col">
+          <h4 className="footer-col-title">COMPANY</h4>
+          <ul className="footer-links">
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/about">About Us</Link></li>
+            <li><Link to="/collection">Collection</Link></li>
+            <li><Link to="/contact">Contact</Link></li>
+          </ul>
+        </div>
+
+        <div className="footer-col">
+          <h4 className="footer-col-title">GET IN TOUCH</h4>
+          <ul className="footer-links">
+            <li><a href="tel:+919409859500">+91 940 985 9500</a></li>
+            <li><a href="mailto:admin@forever.com">admin@forever.com</a></li>
+            <li><a href="#" rel="noreferrer">Instagram</a></li>
+            <li><a href="#" rel="noreferrer">Facebook</a></li>
+          </ul>
         </div>
       </div>
-      <div className="Copyright">
-        <p>Copyright 2024@ krushal - All Right Reserved.</p>
+
+      <div className="footer-bottom">
+        <p>© {new Date().getFullYear()} Forever — All rights reserved.</p>
       </div>
     </footer>
   );

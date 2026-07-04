@@ -1,43 +1,54 @@
 import deliveryDetailModel from "../models/deliveryInformation.js";
 import productDetailmodel from "../models/productModel.js";
-import userModel from '../models/user.js'
+import userModel from '../models/user.js';
+import Stripe from 'stripe';
 
-import Stripe from 'stripe'
-
-//global variable
-const currency = "USD"
-const deliveryCharge = 10
-
-//getway initialize
+const currency = "INR";
+const deliveryCharge = 10;
 
 const stripe = new Stripe(process.env.STRIPE_KEY);
 
 const placeOrderStripe = async (req, res) => {
     try {
-        console.log(req.body);
         const { UserId, cartDetail, bill, Street } = req.body;
-        const { origin } = req.headers;
-        // console.log(UserId,cartDetail,bill,Street,origin);
+        const userId = req.userId || UserId;
+        const origin = req.headers.origin || process.env.FRONTEND_URL || "http://localhost:5173";
 
+        if (!userId || !cartDetail || cartDetail.length === 0) {
+            return res.status(400).json({ success: false, message: "Invalid order parameters" });
+        }
 
+        const products = await productDetailmodel.find();
 
-        const newOrder = new deliveryDetailModel(req.body);
+        for (const item of cartDetail) {
+            const val = products.find((data) => data._id.toString() === item._id.toString());
+            if (!val) {
+                return res.status(404).json({ success: false, message: `Product not found` });
+            }
+            const stock = val.ProductStock !== undefined ? val.ProductStock : 0;
+            if (stock < item.count) {
+                return res.status(400).json({ success: false, message: `Insufficient stock for ${val.ProductName}. Only ${stock} items available.` });
+            }
+        }
+
+        const newOrder = new deliveryDetailModel({
+            ...req.body,
+            UserId: userId,
+            payment: false
+        });
         await newOrder.save();
-        // console.log("done");
-        const product = await productDetailmodel.find();
-        // console.log(product);
 
+        const product = products;
 
         const line_items = cartDetail.map((item) => {
             const val = product.find((data) => data._id.toString() === item._id.toString());
-
             return {
                 price_data: {
-                    currency: currency,
+                    currency: currency.toLowerCase(),
                     product_data: {
-                        name: val.ProductName
+                        name: val ? val.ProductName : "Product"
                     },
-                    unit_amount: val.ProductPrice * 100,
+                    unit_amount: (val ? val.ProductPrice : 0) * 100,
                 },
                 quantity: item.count,
             };
@@ -45,135 +56,189 @@ const placeOrderStripe = async (req, res) => {
 
         line_items.push({
             price_data: {
-                currency: currency,
+                currency: currency.toLowerCase(),
                 product_data: {
-                    name: "delivery charges"
+                    name: "Delivery charges"
                 },
                 unit_amount: deliveryCharge * 100,
             },
             quantity: 1,
-        })
+        });
 
         const session = await stripe.checkout.sessions.create({
             success_url: `${origin}/verify?success=true&orderId=${newOrder._id}`,
             cancel_url: `${origin}/verify?success=false&orderId=${newOrder._id}`,
             line_items,
             mode: 'payment',
-        })
+        });
 
-        // console.log("session", session);
-
-
-        res.json({ success: true, session_url: session.url });
-
-
-
-
+        return res.json({ success: true, session_url: session.url });
 
     } catch (err) {
-        console.log(err);
-
+        console.error("Stripe order error:", err);
+        return res.status(500).json({ success: false, message: err.message });
     }
 }
-
 
 const verifyStript = async (req, res) => {
     const { orderId, success } = req.body;
 
     try {
-        if (success) {
-            await orderDetailModel.findByIdAndUpdate(orderId, { payment: true });
-            res.json({
-                success: true
-            })
+        if (!orderId) {
+            return res.status(400).json({ success: false, message: "Order ID required" });
         }
-        else {
-            await orderDetailModel.findByIdAndDelete(orderId); res.json({ success: false });
+        
+        const order = await deliveryDetailModel.findById(orderId);
+        if (!order) {
+            return res.status(404).json({ success: false, message: "Order not found" });
+        }
+
+        if (success === true || success === "true") {
+            await deliveryDetailModel.findByIdAndUpdate(orderId, { payment: true });
+            
+            // Clear cart in DB
+            await userModel.findByIdAndUpdate(order.UserId, { cartData: [] });
+            
+            // Reduce stock
+            for (const item of order.cartDetail) {
+                await productDetailmodel.findByIdAndUpdate(item._id, {
+                    $inc: { ProductStock: -item.count }
+                });
+            }
+            
+            return res.json({ success: true });
+        } else {
+            await deliveryDetailModel.findByIdAndDelete(orderId);
+            return res.json({ success: false });
         }
     } catch (err) {
-        console.log(err);
-
+        console.error("Verify Stripe error:", err);
+        return res.status(500).json({ success: false, message: err.message });
     }
 }
-
-
 
 const addData = async (req, res) => {
-    const data = req.body;
-    // console.log(data);
     try {
-        const delivery = new deliveryDetailModel(data);
+        const userId = req.userId || req.body.UserId;
+        const { cartDetail } = req.body;
+
+        if (!cartDetail || cartDetail.length === 0) {
+            return res.status(400).json({ success: false, message: "Invalid order parameters" });
+        }
+
+        const products = await productDetailmodel.find();
+
+        for (const item of cartDetail) {
+            const val = products.find((data) => data._id.toString() === item._id.toString());
+            if (!val) {
+                return res.status(404).json({ success: false, message: `Product not found` });
+            }
+            const stock = val.ProductStock !== undefined ? val.ProductStock : 0;
+            if (stock < item.count) {
+                return res.status(400).json({ success: false, message: `Insufficient stock for ${val.ProductName}. Only ${stock} items available.` });
+            }
+        }
+
+        const delivery = new deliveryDetailModel({
+            ...req.body,
+            UserId: userId
+        });
         await delivery.save();
+
+        // Reduce stock automatically for COD orders
+        for (const item of cartDetail) {
+            await productDetailmodel.findByIdAndUpdate(item._id, {
+                $inc: { ProductStock: -item.count }
+            });
+        }
+
         return res.json({
-            message: "Sucess"
-        })
+            message: "Sucess",
+            success: true
+        });
     } catch (err) {
         console.error(err);
+        return res.status(500).json({ success: false, message: err.message });
     }
-
 }
 
-
 const deletedata = async (req, res) => {
-    const { id } = req.body;
-    // console.log(id);
-
-
-    const detail = await userModel.findOne();
-    // console.log("detail", detail.cartData);
-    await userModel.updateOne({ _id: id }, { cartData: [] });
-
-    return res.json({
-        message: true
-    })
+    try {
+        const userId = req.userId || req.body.id;
+        if (!userId) {
+            return res.status(400).json({ success: false, message: "User ID required" });
+        }
+        await userModel.updateOne({ _id: userId }, { cartData: [] });
+        return res.json({
+            message: true,
+            success: true
+        });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ success: false, message: err.message });
+    }
 }
 
 const getData = async (req, res) => {
-    const userLogin = await userModel.findOne({ IsLogin: true });
-    const id = userLogin._id;
-
-    const data = await deliveryDetailModel.find({ UserId: id });
-    res.send(data);
-
+    try {
+        const userId = req.userId;
+        if (!userId) {
+            return res.status(401).json({ success: false, message: "Unauthorized" });
+        }
+        const data = await deliveryDetailModel.find({ UserId: userId }).sort({ createdAt: -1 });
+        return res.send(data);
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ success: false, message: err.message });
+    }
 }
+
 const getAllData = async (req, res) => {
-    const data = await deliveryDetailModel.find();
-    res.send(data);
+    try {
+        const data = await deliveryDetailModel.find().sort({ createdAt: -1 });
+        return res.send(data);
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ success: false, message: err.message });
+    }
 }
 
 const updateStatus = async (req, res) => {
-    // console.log(req.body);
-    const { status, userId, productId, btnSize } = req.body;
-    if (!status || !userId || !productId || !btnSize) return;
+    try {
+        const { status, userId, productId, btnSize } = req.body;
+        if (!status || !userId || !productId || !btnSize) {
+            return res.status(400).json({ success: false, message: "Missing parameter details" });
+        }
 
-    const update = await deliveryDetailModel.updateOne(
-        {
-            _id: userId,
-            "cartDetail._id": productId,
-            "cartDetail.BtnSize": btnSize
-        },
-        {
-            $set: { "cartDetail.$[ele].trackOrder1": status }
-        }, {
-        arrayFilters: [
+        const update = await deliveryDetailModel.updateOne(
             {
-                "ele._id": productId,
-                "ele.BtnSize": btnSize
+                _id: userId,
+                "cartDetail._id": productId,
+                "cartDetail.BtnSize": btnSize
+            },
+            {
+                $set: { "cartDetail.$[ele].trackOrder1": status }
+            },
+            {
+                arrayFilters: [
+                    {
+                        "ele._id": productId,
+                        "ele.BtnSize": btnSize
+                    }
+                ]
             }
-        ]
+        );
+
+        if (update.acknowledged) {
+            const data = await deliveryDetailModel.find().sort({ createdAt: -1 });
+            return res.send(data);
+        } else {
+            return res.status(400).json({ success: false, message: "Could not update status" });
+        }
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ success: false, message: err.message });
     }
-    );
-    if (update.acknowledged) {
-        return res.send(await deliveryDetailModel.find());
-    }
-
-
-
-    // console.log(updateData);
 };
-
-
-
-
 
 export { addData, deletedata, getData, getAllData, updateStatus, placeOrderStripe, verifyStript };

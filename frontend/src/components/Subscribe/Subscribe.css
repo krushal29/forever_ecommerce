@@ -1,44 +1,64 @@
 .Subscribe {
   width: 100%;
-  /* background-color: aqua; */
   display: flex;
   justify-content: center;
-  margin-top: 60px;
+  margin-top: 80px;
+  padding-bottom: 80px;
+  background-color: var(--color-bg-main);
 }
 
 .Subscribe1 {
   width: 85%;
-  /* background-color: aquamarine; */
+  max-width: 600px;
   text-align: center;
 }
 
 .Subscribe1 .Subscribe_h3 h3 {
-  font-size: 20px;
-  padding-bottom: 10px;
+  font-family: var(--font-primary);
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--color-primary);
+  margin-bottom: 8px;
 }
 
 .Subscribe1 .Subscribe_p p {
-  color: #9ca3af;
-  padding-bottom: 20px;
+  color: var(--color-secondary);
+  font-size: 14px;
+  margin-bottom: 24px;
 }
 
 .Subscribe1 .Subscribe_input {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
+  max-width: 500px;
+  margin: 0 auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
 }
 
 .Subscribe1 .Subscribe_input input {
-  padding: 15px 300px 15px 10px;
-  border: 1px solid #9ca3af;
-  border-right: none;
+  flex: 1;
+  padding: 12px 16px;
+  border: none;
+  font-size: 14px;
+  outline: none;
 }
 
 .Subscribe1 .Subscribe_input button {
-  padding: 18px 34px;
-  background-color: black;
-  color: white;
-  border: 1px solid #9ca3af;
-  border-left: none;
-  font-size: 10px;
+  padding: 12px 28px;
+  background-color: var(--color-primary);
+  color: var(--color-bg-main);
+  border: none;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
 }
+
+.Subscribe1 .Subscribe_input button:hover {
+  background-color: var(--color-primary-hover);
+}
+

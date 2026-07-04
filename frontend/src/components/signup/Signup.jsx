@@ -1,125 +1,126 @@
-import { useState } from "react";
-import "../signup/Signup.css";
-
+import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { backendurl } from "../../App";
-import { Oval } from "react-loader-spinner";
-import { ToastContainer, toast } from "react-toastify";
+import { AuthContext } from "../../context/AuthContext";
+import { toast, ToastContainer } from "react-toastify";
 
-const Login1 = () => {
+const Signup = () => {
+  const [name, setname] = useState("");
+  const [email, setemail] = useState("");
+  const [password, setpassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const { login, backendUrl } = useContext(AuthContext);
   const navigate = useNavigate();
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [showName, SetShowName] = useState(false);
-  const [showEmail, SetShowEmail] = useState(false);
-  const [showPassword, SetShowPassword] = useState(false);
-  const [loading, Setloading] = useState(false);
 
-  const notify = (err) => toast.error(err);
-
-  const onSubmitHandle = async (e) => {
+  const handlePost = async (e) => {
     e.preventDefault();
-    name == "" ? SetShowName(true) : SetShowName(false);
-    email == "" ? SetShowEmail(true) : SetShowEmail(false);
-    password == "" ? SetShowPassword(true) : SetShowPassword(false);
+    if (!name || !email || !password) {
+      return toast.error("All fields are required");
+    }
+    if (password.length < 8) {
+      return toast.error("Password must be at least 8 characters");
+    }
 
-    if (!name || !email || !password) return;
     try {
-      Setloading(true);
-      // console.log(name, email, password);
-      const Response = await axios.post(`${backendurl}/api/user/signup`, {
+      setLoading(true);
+      const response = await axios.post(`${backendUrl}/api/user/signup`, {
         name,
         email,
         password,
       });
-      // console.log(Response);
 
-      if (!Response.data.message) {
-        notify(Response.data.data);
-        Setloading(false);
+      if (response.data.message) {
+        login(response.data.token, response.data.user);
+        toast.success("Account created successfully! Welcome to Forever.");
+        setTimeout(() => navigate("/"), 1200);
       } else {
-        Setloading(false);
-        navigate("/login");
+        toast.error(response.data.data || "Registration failed");
       }
     } catch (err) {
-      console.log("Error:", err.message);
+      console.error(err);
+      toast.error(err.response?.data?.data || "Unable to register");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="login margin1">
-      <div className="login1">
-        <div className="loginLine">
-          <h2>Sign Up</h2>
-          <p className="line"></p>
+    <div style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      minHeight: "75vh",
+      backgroundColor: "var(--color-bg-main)"
+    }}>
+      <div style={{
+        width: "100%",
+        maxWidth: "400px",
+        padding: "36px",
+        border: "1px solid var(--color-border)",
+        borderRadius: "var(--radius-sm)",
+        boxShadow: "var(--shadow-lg)",
+        backgroundColor: "var(--color-bg-main)"
+      }}>
+        <div style={{ textAlign: "center", marginBottom: "28px" }}>
+          <h2 style={{
+            fontSize: "28px",
+            fontWeight: "500",
+            letterSpacing: "0.05em",
+            fontFamily: "var(--font-display)",
+            marginBottom: "8px"
+          }}>CREATE ACCOUNT</h2>
+          <span className="line" style={{ margin: "0 auto" }}></span>
         </div>
-        <form action="" onSubmit={onSubmitHandle}>
-          <div className="inputdetail">
-            <div className="name">
-              <input
-                type="text"
-                placeholder="Name"
-                value={name}
-                onChange={(e) => {
-                  setName(e.target.value);
-                }}
-              />
-              {showName && <p className="Error">*Please Enter Name</p>}
-            </div>
-            <div className="Email">
-              <input
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                }}
-              />
-              {showEmail && <p className="Error">*Please Enter Email</p>}
-            </div>
-            <div className="password">
-              <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                }}
-              />
-              {showPassword && <p className="Error">*Please Enter Password</p>}
-            </div>
-            <div className="Createaccount">
-              <div className="Forgot">
-                <p>Forgot your password?</p>
-              </div>
-              <div className="Create">
-                <p>
-                  <Link to={"/login"}>Login Here</Link>
-                </p>
-              </div>
-            </div>
-            <div className="SignInBtn">
-              <button>
-                {loading ? (
-                  <Oval
-                    width={45}
-                    height={15}
-                    color="white"
-                    secondaryColor="white"
-                  />
-                ) : (
-                  "Sign Up"
-                )}
-              </button>
-            </div>
+
+        <form onSubmit={handlePost} style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+            <label htmlFor="reg-name" style={{ fontSize: "12px", fontWeight: "600", color: "var(--color-secondary)", letterSpacing: "0.05em" }}>YOUR NAME</label>
+            <input
+              id="reg-name"
+              type="text"
+              placeholder="Enter your name"
+              value={name}
+              onChange={(e) => setname(e.target.value)}
+              required
+            />
           </div>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+            <label htmlFor="reg-email" style={{ fontSize: "12px", fontWeight: "600", color: "var(--color-secondary)", letterSpacing: "0.05em" }}>EMAIL ADDRESS</label>
+            <input
+              id="reg-email"
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setemail(e.target.value)}
+              required
+            />
+          </div>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+            <label htmlFor="reg-password" style={{ fontSize: "12px", fontWeight: "600", color: "var(--color-secondary)", letterSpacing: "0.05em" }}>PASSWORD</label>
+            <input
+              id="reg-password"
+              type="password"
+              placeholder="Minimum 8 characters"
+              value={password}
+              onChange={(e) => setpassword(e.target.value)}
+              required
+            />
+          </div>
+
+          <button type="submit" className="btn btn-primary" style={{ width: "100%", marginTop: "10px" }} disabled={loading}>
+            {loading ? "CREATING..." : "REGISTER"}
+          </button>
         </form>
+
+        <div style={{ textAlign: "center", marginTop: "24px", fontSize: "14px", color: "var(--color-secondary)" }}>
+          Already have an account? <Link to="/login" style={{ color: "var(--color-primary)", fontWeight: "600", textDecoration: "underline" }}>Login here</Link>
+        </div>
       </div>
       <ToastContainer />
     </div>
   );
 };
 
-export default Login1;
+export default Signup;

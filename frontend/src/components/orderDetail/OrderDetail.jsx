@@ -1,123 +1,117 @@
 import "../orderDetail/OrderDetail.css";
 import payment from "../../../public/paymentMode.png";
-// import razorpay from "../../../public/razorpay_logo-DrY6yMWi.png";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { backendurl } from "../../App";
+import { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 import { Oval } from "react-loader-spinner";
 import { ToastContainer, toast } from "react-toastify";
 
 const OrderDetail = () => {
+  const { api, user, refreshCart } = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const [FirstName, SetFirstName] = useState("");
   const [LastName, SetLastName] = useState("");
   const [Email, SetEmail] = useState("");
   const [Street, SetStreet] = useState("");
   const [City, SetCity] = useState("");
   const [State, SetState] = useState("");
-  const [Zipcode, SetZipCode] = useState();
+  const [Zipcode, SetZipCode] = useState("");
   const [Country, SetCountry] = useState("");
-  const [phone, SetPhone] = useState();
+  const [phone, SetPhone] = useState("");
   const [paymentMode, SetpaymentMode] = useState("");
-  const [count, setCount] = useState([]);
-  const [detail, setdetail] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
+  const [productDetails, setProductDetails] = useState([]);
   const [finalBill, setFinalBill] = useState(0);
   const [loading, Setloading] = useState(false);
 
-  const notify=(err)=>toast.error(err);
-
-
-  // console.log("payment",paymentMode);
-  const navigate = useNavigate();
+  const notify = (err) => toast.error(err);
 
   useEffect(() => {
-    const data = async () => {
-      const userId = await axios.get(`${backendurl}/api/product/getcart`);
-      const data1 = userId.data.cartData;
-      setCount(data1);
-      const detail1 = await axios.post(
-        `${backendurl}/api/product/addcart1`,
-        data1
-      );
-      setdetail(detail1.data);
-      // console.log("count",count);
-      // console.log("detail",detail);
+    const fetchCheckoutData = async () => {
+      try {
+        if (!user) return;
+        
+        // Fetch cart items
+        const resCart = await api.get(`/api/product/getcart`);
+        const items = resCart.data.cartData || [];
+        setCartItems(items);
 
-      let bill = [];
-      for (let cou in count) {
-        // console.log(count1[cou]);
-        for (let det in detail) {
-          // console.log(detail1[det]);
-          if (count[cou]._id === detail[det]._id) {
-            bill.push(detail[det].ProductPrice);
-          }
+        if (items.length > 0) {
+          const resDetails = await api.post(`/api/product/addcart1`, items);
+          setProductDetails(resDetails.data);
         }
+      } catch (err) {
+        console.error("Checkout data error:", err);
       }
-      // console.log("bill", bill);
-      let total = 0;
-      for (let key in count) {
-        // console.log(count1[key].count, bill[key]);
-        let totalcouter = count[key].count * bill[key];
-        total += totalcouter;
-      }
-      setFinalBill(total);
     };
-    data();
-  }, [detail, count]);
+    fetchCheckoutData();
+  }, [user]);
+
+  // Recalculate bill
+  useEffect(() => {
+    let total = 0;
+    cartItems.forEach((item) => {
+      const detail = productDetails.find((d) => d._id === item._id);
+      if (detail) {
+        total += (detail.ProductPrice || 0) * (item.count || 0);
+      }
+    });
+    setFinalBill(total);
+  }, [cartItems, productDetails]);
+
   const DELIVERYPost = async (e) => {
     e.preventDefault();
-    if(!LastName||!FirstName||!Email||!Street||!City||!State||!Zipcode||!Country||!phone){
-     return notify("Please fill in all required fields.")
+
+    if (!FirstName || !LastName || !Email || !Street || !City || !State || !Zipcode || !Country || !phone) {
+      return notify("Please fill in all required fields.");
     }
-    if(!paymentMode) return notify("Please Enter One PaymentMode");
+    if (!paymentMode) {
+      return notify("Please select a payment method.");
+    }
+
     Setloading(true);
-    const userId = await axios.get(`${backendurl}/api/product/getcart`);
-    const id = userId.data._id;
 
     const obj = {
-      UserId: id,
-      FirstName: FirstName,
-      LastName: LastName,
-      Email: Email,
-      Street: Street,
-      City: City,
-      State: State,
-      ZipCode: Zipcode,
-      Country: Country,
-      Phone: phone,
+      UserId: user._id,
+      FirstName,
+      LastName,
+      Email,
+      Street,
+      City,
+      State,
+      ZipCode: Number(Zipcode),
+      Country,
+      Phone: Number(phone),
       bill: finalBill,
       paymentMethod: paymentMode,
       payment: false,
-      cartDetail: userId.data.cartData,
+      cartDetail: cartItems,
     };
 
-    if (paymentMode == "COD") {
-      await axios.post(`${backendurl}/api/delivery/adddata`, obj);
-      // console.log("dtaa",respone.data);
-    } else if (paymentMode == "stripe") {
-      const respone = await axios.post(
-        `${backendurl}/api/delivery/addStripe`,
-        obj
-      );
-      console.log("response", respone.data.success);
-      if (respone.data.success) {
-        const { session_url } = respone.data;
-        window.location.replace(session_url);
-      } else {
-        toast.error(respone.data.message);
+    try {
+      if (paymentMode === "COD") {
+        await api.post(`/api/delivery/adddata`, obj);
+        // Clear cart in DB
+        await api.post(`/api/delivery/deleteData`, { id: user._id });
+        toast.success("Order placed successfully!");
+        refreshCart();
+        setTimeout(() => navigate("/orders"), 1500);
+      } else if (paymentMode === "stripe") {
+        const response = await api.post(`/api/delivery/addStripe`, obj);
+        if (response.data.success) {
+          window.location.replace(response.data.session_url);
+        } else {
+          toast.error(response.data.message || "Stripe checkout redirection failed");
+          Setloading(false);
+        }
       }
-    }
-
-    const deleterespone = await axios.post(
-      `${backendurl}/api/delivery/deleteData`,
-      { id }
-    );
-    if (deleterespone.data.message) {
+    } catch (err) {
+      console.error(err);
+      toast.error(err.response?.data?.message || "Something went wrong. Please try again.");
       Setloading(false);
-      navigate("/cart");
     }
   };
-  // console.log(FirstName,LastName,Email,Street,City,State,Zipcode,Country,phone);
 
   return (
     <div className="order1">
@@ -127,7 +121,7 @@ const OrderDetail = () => {
             <h2>
               <span>DELIVERY</span> INFORMATION
             </h2>
-            <p className="line"></p>
+            <span className="line"></span>
           </div>
           <div className="user">
             <div className="name">
@@ -138,7 +132,6 @@ const OrderDetail = () => {
                 value={FirstName}
                 onChange={(e) => SetFirstName(e.target.value)}
               />
-              
               <input
                 required
                 type="text"
@@ -211,68 +204,68 @@ const OrderDetail = () => {
             </div>
           </div>
         </div>
+        
         <div className="paymentMethod">
           <div className="cartheading">
             <h2>
               <span>CART</span> TOTALS
             </h2>
-            <p className="line"></p>
+            <span className="line"></span>
           </div>
           <div className="bill">
             <p>Subtotal</p>
-            <p>$ {finalBill}.00</p>
+            <p>₹{finalBill.toFixed(2)}</p>
           </div>
           <div className="ShippingFee">
             <p>Shipping Fee</p>
-            <p>$ 10.00</p>
+            <p>₹10.00</p>
           </div>
           <div className="totalcharge">
             <p>Total</p>
-            <p>$ {finalBill + 10}.00</p>
+            <p>₹{(finalBill + 10).toFixed(2)}</p>
           </div>
+          
           <div className="paymentMethodHeading">
             <h3>
               <span>PAYMENT </span>METHOD
             </h3>
-            <p className="line"></p>
+            <span className="line"></span>
           </div>
+          
           <div className="allpayment">
-            <div className="stripe">
-              <input required
+            <label className={`payment-option-card ${paymentMode === 'stripe' ? 'active' : ''}`}>
+              <input 
+                required
                 type="radio"
                 value="stripe"
                 name="payment"
+                checked={paymentMode === 'stripe'}
                 onChange={(e) => SetpaymentMode(e.target.value)}
               />
-              <img src={payment} alt="" />
-            </div>
-            {/* <div className="razorpay">
-              <input
-                type="radio"
-                value="razorpay"
-                name="payment"
-                onChange={(e) => SetpaymentMode(e.target.value)}
-              />
-              <img src={razorpay} alt="" />
-            </div> */}
-            <div className="COD">
-              <input  required
+              <img src={payment} alt="Stripe Payment logo" />
+            </label>
+            
+            <label className={`payment-option-card cod-option ${paymentMode === 'COD' ? 'active' : ''}`}>
+              <input 
+                required
                 type="radio"
                 value="COD"
                 name="payment"
+                checked={paymentMode === 'COD'}
                 onChange={(e) => SetpaymentMode(e.target.value)}
               />
               <span>CASH ON DELIVERY</span>
-            </div>
+            </label>
           </div>
+          
           <div className="placebtn">
-            <button type="submit" onClick={DELIVERYPost}>
+            <button type="submit" className="btn btn-primary" onClick={DELIVERYPost} disabled={loading}>
               {loading ? (
                 <Oval
                   color="white"
                   secondaryColor="white"
-                  width={105}
-                  height={17}
+                  width={24}
+                  height={24}
                 />
               ) : (
                 "PLACE ORDER"
@@ -281,7 +274,7 @@ const OrderDetail = () => {
           </div>
         </div>
       </div>
-      <ToastContainer/>
+      <ToastContainer />
     </div>
   );
 };

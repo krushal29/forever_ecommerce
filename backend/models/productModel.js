@@ -20,7 +20,7 @@ const productDetail = new mongoose.Schema({
         required: true,
         type: String
     },
-    SubCategor: {
+    SubCategory: {
         required: true,
         type: String
     },
@@ -36,12 +36,17 @@ const productDetail = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    ProductStock: {
+        type: Number,
+        required: true,
+        default: 0
+    },
     date: {
         type: Number,
         default: Date.now,
         required: true
     }
-},{collection:"productdetail"});
+},{collection:"productdetail", timestamps: true});
 
 const productDetailmodel = mongoose.models.productDetailmodel || mongoose.model("productDetailmodel", productDetail);
 

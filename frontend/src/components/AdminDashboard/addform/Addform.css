@@ -1,138 +1,166 @@
+/* ==========================================================================
+   ADMIN ADD PRODUCT FORM STYLING
+   ========================================================================== */
+
 .Addform {
   width: 100%;
-  /* background-color: aqua; */
+  background-color: var(--color-bg-main);
 }
 
 .Addform1 {
-  width: 38%;
-  /* background-color: aquamarine; */
+  width: 100%;
+  max-width: 600px;
 }
+
 .Addform1 .uploadImg h4 {
-  margin-bottom: 7px;
-  color: #728c94;
+  margin-bottom: 12px;
+  color: var(--color-secondary);
+  font-size: 14px;
 }
+
+/* Image Previews & Input styling */
 .Addform1 .upload {
   display: flex;
-  width: 90%;
-  /* background-color: red; */
-  padding-bottom: 10px;
+  gap: 16px;
+  margin-bottom: 24px;
 }
 
-
-.Addform1 .productName h4{
-    padding-bottom: 5px;
-    color: #728c94;
+.upload-label {
+  width: 80px;
+  height: 80px;
+  border: 1px dashed var(--color-border-hover);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: var(--color-bg-alt);
+  overflow: hidden;
+  transition: border-color var(--transition-fast);
 }
 
-.Addform1 .producttype input{
-    width: 100%;
-    padding: 8px 5px;
+.upload-label:hover {
+  border-color: var(--color-primary);
 }
 
-.Addform1 .productdescription h4{
-    padding: 8px 0;
-    color: #728c94;
+.upload-label img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.Addform1 .inputdescription textarea{
-    width: 100%;
-    padding: 8px 5px;
+/* Form fields headings */
+.Addform1 h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: 8px;
 }
 
-.Addform .Allcategory{
-    display: flex;
-    padding-top: 10px;
+.Addform1 .productName,
+.Addform1 .productdescription,
+.Addform1 .ProductSizes {
+  margin-top: 20px;
 }
 
-.Addform1 .Allcategory .Productcategory{
-    /* width: 70%; */
-    /* background-color: aliceblue; */
-    margin-right: 20px;
+.Addform1 .producttype input,
+.Addform1 .inputdescription textarea {
+  width: 100%;
 }
 
-
-.Addform1 .Allcategory .Productcategory .category h4{
-    color: #728c94;
-    padding-bottom: 8px;
+.Addform1 .inputdescription textarea {
+  height: 100px;
+  resize: vertical;
 }
 
-.Addform1 .Allcategory .Productcategory .inputcategory select{
-    width: 100%;
-    padding: 5px 0;
+/* Category selects grid layout */
+.Addform .Allcategory {
+  display: flex;
+  gap: 20px;
+  margin-top: 24px;
+  flex-wrap: wrap;
 }
 
-
-
-
-
-.Addform1 .Allcategory .SubCategory{
-    /* width: 70%; */
-    /* background-color: aliceblue; */
-    margin-right: 20px;
+.Addform1 .Allcategory .Productcategory,
+.Addform1 .Allcategory .SubCategory,
+.Addform1 .Allcategory .ProductPrice {
+  flex: 1;
+  min-width: 120px;
 }
 
-
-.Addform1 .Allcategory .SubCategory .category h4{
-    color: #728c94;
-    padding-bottom: 8px;
+.Addform1 .allsizes {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
 }
 
-.Addform1 .Allcategory .SubCategory .inputcategory select{
-    width: 100%;
-    padding: 5px 0;
+.Addform1 .allsizes .size button {
+  padding: 8px 16px;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-bg-alt);
+  color: var(--color-primary);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-primary);
+  font-size: 13px;
+  font-weight: 500;
+  transition: all var(--transition-fast);
 }
 
-
-.Addform1 .Allcategory .ProductPrice{
-    width: 30%;
-    /* background-color: aliceblue; */
-    /* margin-right: 5px; */
+.Addform1 .allsizes .size button:hover {
+  border-color: var(--color-border-hover);
 }
 
-
-.Addform1 .Allcategory .ProductPrice .category h4{
-    color: #728c94;
-    padding-bottom: 8px;
+.Addform1 .allsizes .size button.active {
+  background-color: var(--color-primary);
+  color: var(--color-bg-main);
+  border-color: var(--color-primary);
 }
 
-.Addform1 .Allcategory .ProductPrice .inputcategory input{
-    width: 100%;
-    padding: 5px 0;
+/* Bestseller checkbox */
+.Addform1 .bestSellers {
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.Addform1 .ProductSizes{
-    padding-top: 10px;
-}
-.Addform1 .ProductSizes h4{
-    color: #728c94;
-}
-.Addform1 .allsizes{
-    display: flex;
-    padding-top: 5px;
+.Addform1 .bestSellers input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--color-primary);
+  cursor: pointer;
 }
 
-.Addform1 .allsizes .size button{
-    padding: 5px 10px;
-    margin-right: 15px;
-    cursor: pointer;
-    border: none;
+.Addform1 .bestSellers label {
+  font-size: 14px;
+  color: var(--color-secondary);
+  cursor: pointer;
+  user-select: none;
 }
 
-.Addform1 .bestSellers{
-    padding-top: 12px;
-    align-items: center;
-    display: flex;
+/* Submit button wrapper */
+.Addform1 .Addbtn button {
+  background-color: var(--color-primary);
+  color: var(--color-bg-main);
+  border: none;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  padding: 12px 36px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  margin-top: 32px;
+  transition: background-color var(--transition-fast);
 }
 
-.Addform1 .bestSellers input{
-    margin-right: 5px;
+.Addform1 .Addbtn button:hover {
+  background-color: var(--color-primary-hover);
 }
 
-.Addform1 .Addbtn button{
-    padding: 10px 40px;
-    background-color: black;
-    color: white;
-    margin-top: 30px;
-    cursor: pointer;
+@media (max-width: 768px) {
+  .Addform .Allcategory {
+    flex-direction: column;
+    gap: 16px;
+  }
 }
-

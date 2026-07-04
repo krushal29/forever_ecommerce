@@ -1,27 +1,30 @@
 # ============================================================
-#  FRONTEND .gitignore (Vite + React)
+#  ROOT .gitignore — E-commerce MERN Project
 # ============================================================
 
 # ── Dependencies ─────────────────────────────────────────────
 node_modules/
+.pnp
+.pnp.js
+.yarn/install-state.gz
 
-# ── Environment Variables ─────────────────────────────────────
+# ── Environment Variables (NEVER commit secrets) ─────────────
 .env
 .env.local
 .env.*.local
 .env.development
 .env.test
 .env.production
+*.env
 
 # ── Build Outputs ─────────────────────────────────────────────
 dist/
 dist-ssr/
 build/
 out/
-
-# ── Vite Cache ────────────────────────────────────────────────
-.vite/
-.cache/
+.output/
+.vercel/
+.netlify/
 
 # ── Logs ─────────────────────────────────────────────────────
 logs/
@@ -32,10 +35,13 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-# ── OS Files ─────────────────────────────────────────────────
+# ── OS / System Files ─────────────────────────────────────────
 .DS_Store
+.DS_Store?
 Thumbs.db
+ehthumbs.db
 desktop.ini
+$RECYCLE.BIN/
 
 # ── Editor / IDE ──────────────────────────────────────────────
 .vscode/*
@@ -47,18 +53,36 @@ desktop.ini
 *.sln
 *.sw?
 *.swp
+*.swo
 *~
 
-# ── Testing / Coverage ────────────────────────────────────────
+# ── Uploaded / Generated Files ────────────────────────────────
+uploads/
+temp/
+tmp/
+
+# ── Testing & Coverage ────────────────────────────────────────
 coverage/
 .nyc_output/
+*.lcov
 
-# ── TypeScript Build Info ─────────────────────────────────────
-*.tsbuildinfo
-
-# ── Miscellaneous ─────────────────────────────────────────────
-*.local
-*.pem
-.history/
+# ── Cache ─────────────────────────────────────────────────────
+.cache/
+.parcel-cache/
 .eslintcache
 .stylelintcache
+.vite/
+
+# ── TypeScript / Build Artifacts ──────────────────────────────
+*.tsbuildinfo
+
+# ── Package Manager Locks (keep package-lock OR yarn.lock, not both) ──
+# Uncomment the one you do NOT use:
+# yarn.lock
+# package-lock.json
+
+# ── Miscellaneous ─────────────────────────────────────────────
+*.pem
+*.local
+.history/
+.husky/_/

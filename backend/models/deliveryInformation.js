@@ -2,43 +2,43 @@ import mongoose from "mongoose";
 
 const deliverySchema = new mongoose.Schema({
     UserId: {
-        type: String, require: true
+        type: String, required: true
     },
     FirstName: {
         type: String,
-        require: true
+        required: true
     },
     LastName: {
         type: String,
-        require: true
+        required: true
     },
     Email: {
         type: String,
-        require: true
+        required: true
     },
     Street: {
         type: String,
-        require: true
+        required: true
     },
     City: {
         type: String,
-        require: true
+        required: true
     },
     State: {
         type: String,
-        require: true
+        required: true
     },
     ZipCode: {
         type: Number,
-        require: true
+        required: true
     },
     Country: {
         type: String,
-        require: true
+        required: true
     },
     Phone: {
         type: Number,
-        require: true
+        required: true
     },
     bill: {
         type: Number
@@ -51,11 +51,9 @@ const deliverySchema = new mongoose.Schema({
         default:false
     },
     cartDetail: {
-        type: Array,
-        trackOrder1:"Order Placed"
-
+        type: Array
     }
-}, { collection: "deliveryDetail" })
+}, { collection: "deliveryDetail", timestamps: true })
 
 const deliveryDetailModel = mongoose.models.deliveryDetailModel || mongoose.model("deliveryDetailModel", deliverySchema);
 

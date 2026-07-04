@@ -15,35 +15,75 @@ import Orderlayout from "./pages/admin/adminorder/Orderlayout";
 import ScrollToTop from "./components/ScrollTo/ScrollToTop";
 import Place_order from "./pages/placeorder/Place_order";
 import Orders from "./pages/orders/Orders";
+import Verify from "./pages/verify/Verify";
+import NotFound from "./pages/NotFound";
+import { ProtectedRoute } from "./components/common/ProtectedRoute";
 
-
-
-
-
-export const backendurl=import.meta.env.VITE_BACKEND_URL
+export const backendurl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:4000';
 
 const App = () => {
   return (
     <Router>
       <ScrollToTop>
-      <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/collection" element={<Collection />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/Contact" element={<Contact />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signuppage />} />
-        <Route path="/ProductDetail/:id" element={<Product />} />
-        <Route path="/admin-login" element={<Admin/>}/>
-        <Route path="/admin-dashboard" element={<Dashboard/>}/>
-        <Route path="/add" element={<Add/>}/>
-        <Route path="/items" element={<List/>}/>
-        <Route path="/Order" element={<Orderlayout/>}/>
-        <Route path="/place-order" element={<Place_order/>}/>
-        <Route path="/orders" element={<Orders/>}/>
-      </Routes>
-    </ScrollToTop>
+        <Routes>
+          {/* Public Routes */}
+          <Route path="/" element={<Homepage />} />
+          <Route path="/collection" element={<Collection />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signuppage />} />
+          <Route path="/ProductDetail/:id" element={<Product />} />
+          <Route path="/admin-login" element={<Admin />} />
+
+          {/* User Protected Routes */}
+          <Route path="/cart" element={
+            <ProtectedRoute>
+              <Cart />
+            </ProtectedRoute>
+          } />
+          <Route path="/place-order" element={
+            <ProtectedRoute>
+              <Place_order />
+            </ProtectedRoute>
+          } />
+          <Route path="/orders" element={
+            <ProtectedRoute>
+              <Orders />
+            </ProtectedRoute>
+          } />
+          <Route path="/verify" element={
+            <ProtectedRoute>
+              <Verify />
+            </ProtectedRoute>
+          } />
+
+          {/* Admin Protected Routes */}
+          <Route path="/admin-dashboard" element={
+            <ProtectedRoute requireAdmin={true}>
+              <Dashboard />
+            </ProtectedRoute>
+          } />
+          <Route path="/add" element={
+            <ProtectedRoute requireAdmin={true}>
+              <Add />
+            </ProtectedRoute>
+          } />
+          <Route path="/items" element={
+            <ProtectedRoute requireAdmin={true}>
+              <List />
+            </ProtectedRoute>
+          } />
+          <Route path="/Order" element={
+            <ProtectedRoute requireAdmin={true}>
+              <Orderlayout />
+            </ProtectedRoute>
+          } />
+
+          {/* 404 Route */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </ScrollToTop>
     </Router>
   );
 };

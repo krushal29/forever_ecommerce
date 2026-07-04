@@ -1,56 +1,65 @@
-.About {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 40px;
+/* ==========================================================================
+   ABOUT PAGE STYLING
+   ========================================================================== */
 
-}
-.About h2{
-    margin-right: 8px;
-}
-.About h2 span{
-    color: #6b7280;
-    margin-right: 7px;
+.about-page-wrapper {
+  width: 100%;
+  background-color: var(--color-bg-main);
 }
 
-.aboutUs{
-    width: 100%;
-    /* background-color: aqua; */
-    display: flex;
-    justify-content: center;
-    margin-top: 50px;
-}
-.aboutUs1{
-    width: 85%;
-    /* background-color: aquamarine; */
-    display: flex;
-}
-.aboutUs1 .aboutImg{
-    /* background-color: black; */
-width: 40%;
-}
-.aboutUs1 .aboutImg img{
-    width:90%;
+.about-section-header {
+  display: flex;
+  justify-content: center;
+  margin: 50px 0 40px;
 }
 
-.aboutUs1 .aboutDetail{
-    width: 45%;
-    /* background-color: blue; */
-    display: flex;
+.about-content {
+  width: 85%;
+  max-width: 1200px;
+  margin: 0 auto 80px;
+  display: flex;
+  gap: 60px;
+  align-items: flex-start;
+}
+
+.about-image {
+  flex: 1;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.about-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.about-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-top: 12px;
+}
+
+.about-text p {
+  font-size: 14px;
+  color: var(--color-secondary);
+  line-height: 1.8;
+}
+
+.about-mission h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: 10px;
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 768px) {
+  .about-content {
     flex-direction: column;
-    justify-content: center;
+    gap: 32px;
+  }
 }
-
-.aboutUs1 .aboutDetail .detail1 p{
-    color: #4B5563;
-padding-bottom: 25px;
-}
-.aboutUs1 .aboutDetail .detail2 p{
-    color: #4B5563;
-    padding-bottom: 25px;
-    }
-
-    .aboutUs1 .aboutDetail .missionP p{
-        color: #4B5563;
-        padding: 25px 0;
-    }

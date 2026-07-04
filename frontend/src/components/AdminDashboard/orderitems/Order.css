@@ -1,35 +1,164 @@
+/* ==========================================================================
+   ADMIN ORDERS LIST SCREEN STYLING
+   ========================================================================== */
 
-.detailorder{
-    /* background-color: aqua; */
-    width: 165%;
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-    border: 1px solid #e5e7eb;
-    padding: 25px 25px;
+.AdminOrder {
+  width: 100%;
+  background-color: var(--color-bg-main);
 }
-.detailorder .adreesDetail .userName p{
-    font-weight: 800;
+
+.admin-order-header h3 {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--color-primary);
+  margin-bottom: 24px;
 }
-.detailorder .adreesDetail{
-    /* background-color: aliceblue; */
-    display: flex;
+
+.orders-container-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.detailordr1 {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Individual Order rows styling */
+.detailorder {
+  width: 100%; /* Fix width overflow bug */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-bg-main);
+  padding: 20px;
+  border-radius: var(--radius-sm);
+  gap: 20px;
+  transition: box-shadow var(--transition-fast);
+}
+
+.detailorder:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.detailorder .orderImage {
+  width: 60px;
+  height: 75px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  flex-shrink: 0;
+}
+
+.detailorder .orderImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.detailorder .adreesDetail {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.detailorder .adreesDetail .Productname p {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.detailorder .adreesDetail .userName p {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-primary);
+}
+
+.detailorder .adreesDetail .address p {
+  font-size: 12px;
+  color: var(--color-secondary);
+  line-height: 1.4;
+}
+
+.detailorder .pamentDetail {
+  flex: 1.5;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.detailorder .pamentDetail .itemsDetail p {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.detailorder .pamentDetail .Methodpayment p {
+  font-size: 12px;
+  color: var(--color-secondary);
+  line-height: 1.5;
+}
+
+.status-payment-label {
+  font-weight: 700;
+}
+
+.detailorder .price {
+  flex: 0.8;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-primary);
+  text-align: right;
+}
+
+/* Status selection box dropdown */
+.detailorder .orederSatus select {
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-primary);
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-bg-main);
+  cursor: pointer;
+  outline: none;
+}
+
+.detailorder .orederSatus select:focus {
+  border-color: var(--color-primary);
+}
+
+/* Responsive configurations */
+@media (max-width: 1024px) {
+  .detailorder {
+    flex-wrap: wrap;
+  }
+  
+  .detailorder .price {
+    text-align: left;
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .detailorder {
     flex-direction: column;
-    justify-content: space-between;
-}
-.detailorder .pamentDetail{
-    /* background-color: antiquewhite; */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-.detailorder .pamentDetail .Methodpayment{
-    /* background-color: blue; */
-    line-height: 20px;
-}
-.detailorder .orederSatus select{
-    /* background-color: blueviolet; */
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-weight: 700;
+    align-items: flex-start;
+    padding: 16px;
+  }
+  
+  .detailorder .adreesDetail,
+  .detailorder .pamentDetail,
+  .detailorder .price,
+  .detailorder .orederSatus {
+    width: 100%;
+  }
+  
+  .detailorder .orederSatus select {
+    width: 100%;
+  }
 }

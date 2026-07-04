@@ -1,26 +1,60 @@
-.descriptionProduct{
-    width: 100%;
-    /* background-color: aqua; */
-    display: flex;
-    justify-content: center;
-    margin-top:80px;
+/* ==========================================================================
+   PRODUCT DESCRIPTION / REVIEWS TABS STYLING
+   ========================================================================== */
+
+.descriptionProduct {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: var(--color-bg-main);
+  margin-top: 40px;
 }
-.descriptionProduct1{
-    width: 85%;
-    /* background-color: aquamarine; */
+
+.descriptionProduct1 {
+  width: 85%;
+  max-width: 1200px;
 }
-.descriptionProduct1 .reviews{
-    display: flex;
-    
+
+.reviews {
+  display: flex;
 }
-.descriptionProduct1 .reviews .Description p,.Reviews p{
-    border: 1px solid black;
-    padding: 10px 20px;
+
+.reviews .Description p,
+.reviews .Reviews p {
+  border: 1px solid var(--color-border);
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: var(--color-bg-alt);
+  user-select: none;
 }
-.descriptionProduct1 .reviewsP{
-    border: 1px solid black;
-    padding: 30px 20px;
+
+.reviews .Description p {
+  border-bottom: none;
+  background-color: var(--color-bg-main);
+  border-top: 2px solid var(--color-primary);
 }
-.descriptionProduct1 .reviewsP p{
-    padding-bottom: 10px;
+
+.reviews .Reviews p {
+  border-left: none;
+  color: var(--color-secondary);
+}
+
+.reviewsP {
+  border: 1px solid var(--color-border);
+  padding: 30px;
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+  background-color: var(--color-bg-main);
+}
+
+.reviewsP p {
+  font-size: 14px;
+  color: var(--color-secondary);
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+.reviewsP p:last-child {
+  margin-bottom: 0;
 }

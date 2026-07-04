@@ -1,42 +1,77 @@
-.choose1{
-    display: flex;
-    justify-content: center;
+/* ==========================================================================
+   WHY CHOOSE US SECTION STYLING
+   ========================================================================== */
+
+.why-choose-wrapper {
+  width: 100%;
+  background-color: var(--color-bg-main);
+  margin-bottom: 20px;
 }
 
-.choose{
-    display: flex;
-    align-items: center;
-    margin-top: 50px;
-    width: 85%;
-    /* background-color: aqua; */
-    
+.why-choose-header {
+  display: flex;
+  justify-content: center;
+  margin: 50px 0 40px;
 }
 
-.choose h2 span{
-    color: #6b7280;
+.choose-cards-grid {
+  width: 85%;
+  max-width: 1200px;
+  margin: 0 auto 80px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
 }
 
-.chooseCard{
-    width: 100%;
-    /* background-color: aquamarine; */
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
+.choose-card {
+  padding: 48px 36px;
+  border-right: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: background-color var(--transition-normal);
 }
 
-.chooseCard1{
-    width: 85%;
-    /* background-color: rgb(205, 113, 113); */
-    display: flex;
-}
-.chooseCard1 .Quality,.Convenience,.Exceptional{
-    border: 1px solid #e5e7eb;
-    padding: 100px 55px;
-}
-.chooseCard1 .CardH4 h4{
-    padding-bottom: 20px;
+.choose-card:last-child {
+  border-right: none;
 }
 
-.chooseCard1 .CardP p{
-    color: #4c4e4d;
+.choose-card:hover {
+  background-color: var(--color-primary-light);
+}
+
+.choose-card-icon {
+  color: var(--color-primary);
+}
+
+.choose-card h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-primary);
+  letter-spacing: 0.02em;
+}
+
+.choose-card p {
+  font-size: 14px;
+  color: var(--color-secondary);
+  line-height: 1.7;
+}
+
+@media (max-width: 768px) {
+  .choose-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .choose-card {
+    border-right: none;
+    border-bottom: 1px solid var(--color-border);
+    padding: 32px 24px;
+  }
+
+  .choose-card:last-child {
+    border-bottom: none;
+  }
 }
